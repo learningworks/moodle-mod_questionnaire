@@ -167,7 +167,7 @@ class mod_questionnaire_mod_form extends moodleform_mod {
         }
         // Prevent questionnaire set to "anonymous" to be reverted to "full name".
         $defaultvalues['cannotchangerespondenttype'] = 0;
-        if (!empty($defaultvalues['respondenttype']) && $defaultvalues['respondenttype'] == "anonymous") {
+        if (!empty($defaultvalues['respondenttype']) && $defaultvalues['respondenttype'] == "anonymous" && !is_siteadmin()) {
             // If this questionnaire has responses.
             $numresp = $DB->count_records('questionnaire_response',
                             array('survey_id' => $defaultvalues['sid'], 'complete' => 'y'));
